@@ -1,39 +1,70 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #221f24; /* Dark purple background */
+    background-color: #141414;
     color: #fff;
+    font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
 }
 
+#playlists {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 50px 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 20px; /* Add gap between playlist blocks */
+}
+
 h1 {
-    color: #FFD700; /* Gold color for headings */
-    font-family: 'Pacifico', cursive; /* Fun font for headings */
-    font-size: 36px; /* Larger font size */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for headings */
+    color: #FFD700;
+    margin-top: 30px;
+    font-size: 36px;
 }
 
 .playlist {
-    margin: 20px;
-    padding: 20px; /* Increased padding */
-    background-color: #6A5ACD; /* Purple background for playlists */
-    display: inline-block;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for playlists */
+    background-color: #673AB7;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 200px; /* Adjusted width to better match image */
+    color: #fff;
+    flex: 1 1 30%; /* Adjust flex to control the width of each block */
+    max-width: 250px; /* Ensure that the blocks don’t stretch too wide */
 }
 
-.song {
-    margin: 10px 0; /* Increased margin */
+.playlist h2 {
+    color: #fff; /* Playlist block heading color */
+    font-size: 18px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .song-title {
-    font-weight: bold;
-    color: #FFD700; /* Gold color for song titles */
-    text-decoration: underline; /* Underline effect for song titles */
+    color: #FFD700; /* Song title color */
+    font-size: 14px;
 }
 
-.song-title:hover {
-    text-decoration: none; /* Remove underline on hover */
-    color: #00FF00; /* Green color on hover */
+.artist-name {
+    color: #fff; /* Artist name color */
+    font-size: 14px;
+}
+
+.playlist .song {
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+    #playlists {
+        display: block; /* Switch to a block layout on small screens */
+        margin: 20px;
+    }
+
+    .playlist {
+        margin-bottom: 20px; /* Add space between blocks on small screens */
+        width: auto; /* Adjust width to fit the screen */
+    }
 }
