@@ -1,6 +1,6 @@
-// Array of song objects. Add at least 5 songs with title, artist, and genre properties.
+// Array of song objects
 const songs = [
-    { title: "Hooked on a Feeling", artist: "Blue Swede", genre: "Pop" },
+    { title: "Hooked on a Feeling", artist: "Blue Swede", genre: "Rock" },
     { title: "Moonage Daydream", artist: "David Bowie", genre: "Rock" },
     { title: "I Want You Back", artist: "The Jackson 5", genre: "Pop" },
     { title: "Spirit in the Sky", artist: "Norman Greenbaum", genre: "Rock" },
@@ -11,24 +11,55 @@ const songs = [
     { title: "Come and Get Your Love", artist: "Redbone", genre: "Rock" },
     { title: "I'm Not in Love", artist: "10cc", genre: "Pop" },
     { title: "Fooled Around and Fell in Love", artist: "Elvin Bishop", genre: "Rock" },
-    // Feel free to add even more songs
 ];
-
 
 // Object containing each Guardian's preferred genre
 const guardians = {
     "Star-Lord": "Rock",
     "Gamora": "Pop",
-    // Add preferences for Drax, Rocket, and Groot
+    "Drax": "R&B",
+    "Rocket": "Rock",
+    "Groot": "Pop"
 };
 
 // Function to generate playlist based on preferred genre
 function generatePlaylist(guardians, songs) {
-    // Use the map() function to create playlists for each Guardian
-    // Your code here
+    return Object.keys(guardians).map(guardian => {
+        const preferredGenre = guardians[guardian];
+        const playlist = songs.filter(song => song.genre === preferredGenre);
+        return { guardian, playlist };
+    });
 }
 
 // Call generatePlaylist and display the playlists for each Guardian
-generatePlaylist(guardians, songs);
+const playlists = generatePlaylist(guardians, songs);
+const container = document.getElementById('playlists');
 
+playlists.forEach(({ guardian, playlist }) => {
+    const playlistDiv = document.createElement('div');
+    playlistDiv.className = 'playlist';
 
+    const title = document.createElement('h2');
+    title.textContent = `${guardian}'s Playlist`;
+    playlistDiv.appendChild(title);
+
+    playlist.forEach(song => {
+        const songElement = document.createElement('div');
+        songElement.className = 'song';
+
+        const songTitle = document.createElement('span');
+        songTitle.className = 'song-title';
+        songTitle.textContent = song.title;
+
+        const artistName = document.createElement('span');
+        artistName.className = 'artist-name';
+        artistName.textContent = ` by ${song.artist}`;
+
+        songElement.appendChild(songTitle);
+        songElement.appendChild(artistName);
+
+        playlistDiv.appendChild(songElement);
+    });
+
+    container.appendChild(playlistDiv);
+});
